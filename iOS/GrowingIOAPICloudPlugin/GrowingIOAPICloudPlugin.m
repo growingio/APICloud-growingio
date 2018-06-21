@@ -67,31 +67,30 @@
     if (zone.length != 0) {
         [Growing setZone:zone];
     }
-    if (debug.length != 0 && [debug isEqualToString:@"true"]) {
-        [Growing setEnableLog:YES];
-    }
     
     [Growing startWithAccountId:accountId];
     
+    if (debug.length != 0 && [debug isEqualToString:@"true"]) {
+        [Growing setEnableLog:YES];
+    }
 }
 
 - (void)track:(NSDictionary *)event
 {
-    if (event.count == 0) {
-        return;
-    }
-    
     NSInteger cbid = [event integerValueForKey:@"cbId" defaultValue:0];
-
-    if (![event isKindOfClass:[NSDictionary class]]) {
+    [((NSMutableDictionary *)event) removeObjectForKey:@"cbId"];
+    
+    if (event.count == 0) {
         if (cbid > 0) {
-            [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument event must be object type"] errDict:nil doDelete:YES];
+            [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument event can not be empty"] errDict:nil doDelete:YES];
         }
         return;
     }
     
-    if (event.count == 1 && cbid > 0) {
-        [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument event can not be empty"] errDict:nil doDelete:YES];
+    if (![event isKindOfClass:[NSDictionary class]]) {
+        if (cbid > 0) {
+            [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument event must be object type"] errDict:nil doDelete:YES];
+        }
         return;
     }
     
@@ -165,22 +164,20 @@
 
 - (void)setEvar:(NSDictionary *)conversionVariables
 {
-    if (conversionVariables.count == 0) {
-        return;
-    }
-    
     NSInteger cbid = [conversionVariables integerValueForKey:@"cbId" defaultValue:0];
     [((NSMutableDictionary *)conversionVariables) removeObjectForKey:@"cbId"];
+    
+    if (conversionVariables.count == 0) {
+        if (cbid > 0) {
+            [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument conversionVariables can not be empty"] errDict:nil doDelete:YES];
+        }
+        return;
+    }
 
     if (![conversionVariables isKindOfClass:[NSDictionary class]]) {
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument conversionVariables must be object type"] errDict:nil doDelete:YES];
         }
-        return;
-    }
-    
-    if (conversionVariables.count == 1 && cbid > 0) {
-        [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument conversionVariables can not be empty"] errDict:nil doDelete:YES];
         return;
     }
     
@@ -195,22 +192,20 @@
 
 - (void)setPeopleVariable:(NSDictionary *)peopleVariables
 {
-    if (peopleVariables.count == 0) {
-        return;
-    }
-    
     NSInteger cbid = [peopleVariables integerValueForKey:@"cbId" defaultValue:0];
     [((NSMutableDictionary *)peopleVariables) removeObjectForKey:@"cbId"];
+    
+    if (peopleVariables.count == 0) {
+        if (cbid > 0) {
+            [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument peopleVariables can not be empty"] errDict:nil doDelete:YES];
+        }
+        return;
+    }
 
     if (![peopleVariables isKindOfClass:[NSDictionary class]]) {
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument peopleVariables must be object type"] errDict:nil doDelete:YES];
         }
-        return;
-    }
-    
-    if (peopleVariables.count == 1 && cbid > 0) {
-        [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument peopleVariables can not be empty"] errDict:nil doDelete:YES];
         return;
     }
     
@@ -225,17 +220,17 @@
 
 - (void)setUserId:(NSDictionary *)userIdDict
 {
+    NSInteger cbid = [userIdDict integerValueForKey:@"cbId" defaultValue:0];
+    [((NSMutableDictionary *)userIdDict) removeObjectForKey:@"cbId"];
+
     if (userIdDict.count == 0) {
+        if (cbid > 0) {
+            [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument userIdObject can not be empty"] errDict:nil doDelete:YES];
+        }
         return;
     }
-    
-    NSInteger cbid = [userIdDict integerValueForKey:@"cbId" defaultValue:0];
 
     NSString *userId = userIdDict[@"userId"];
-    
-    if (userIdDict.count == 1 && cbid > 0) {
-        [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument userIdObject can not be empty"] errDict:nil doDelete:YES];
-    }
     
     if (![userId isKindOfClass:[NSString class]] && ![userId isKindOfClass:[NSNumber class]]) {
         if (cbid > 0) {
