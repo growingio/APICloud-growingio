@@ -1,0 +1,8 @@
+[
+ {
+    "name":"GrowingIOAPICloudPlugin",
+    "class":"GrowingIOAPICloudPlugin",
+    "methods":["track", "setEvar", "setPeopleVariable", "setUserId", "clearUserId"],
+    "launchClassMethod":"launch"
+ }
+]
