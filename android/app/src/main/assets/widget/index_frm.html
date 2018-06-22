@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>WinA</title>
+    <link rel="stylesheet" type="text/css" href="css/api.css" />
+    <link rel="stylesheet" type="text/css" href="css/box.css" />
+    <script type="text/javascript" src="script/public.js"></script>
+    <style>
+    	p{
+    		color:#999;
+    		padding:5px;
+    	}
+    </style>
+	<script type="text/javascript">
+	    
+		var gio = null;
+		apiready = function(){
+	    	gio = api.require('growingio');
+	    	gio.init();
+	    }
+
+		function track(eventId){
+			var param = {eventId: eventId};
+	        gio.track(param, function(ret, err){
+	        	alert(JSON.stringify(ret));
+	        });
+		}
+
+		function setEvar(){
+		     var param = { "TEST": "TESTVALUE"};
+		     gio.setEvar(param);
+		}
+
+		function setPeopleVariable(){
+		     var param = { "TESTKEY": "TESTPPV" };
+		     gio.setPeopleVariable(param);
+		}
+
+		function setUserId(){
+		     var param = { userId: "testuserId" };
+		     gio.setUserId(param);
+		}
+
+		function clearUserId(){
+		     gio.clearUserId();
+		}
+	    
+	</script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="main">
+        	<br>
+			<div class='itemtitle'>1、track接口</div>
+				<div class="clickbtn" tapmode="active" onclick="track('FINE')" >track('FINE')</div>
+			<div class='itemtitle'>2、setEvar接口</div>
+				<div class="clickbtn" tapmode="active" onclick="setEvar()" >setEvar()</div>
+			<div class="itemtitle">3、 setPeopleVariable接口</div>
+			    <div class="clickbtn" tapmode="active" onclick="setPeopleVariable()">setPeopleVariable</div>
+			<div class="itemtitle">4、 setUserId</div>
+			    <div class="clickbtn" tapmode="active" onclick="setUserId()">setUserId</div>
+			<div class="itemtitle">5、 clearUserId</div>
+			    <div class="clickbtn" tapmode="active" onclick="clearUserId()">clearUserId</div>
+			<br>
+		</div>
+	</div>
+</body>
+</html>
