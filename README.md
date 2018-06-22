@@ -57,6 +57,13 @@ iOS: 开发控制台 -> 选择应用 -> 模块 -> 自定义模块 -> 点击上�
 | peopleVariables | object | 是 |  |
 | callback | 函数 | 否 | callback {function (ret)}：执行完读取操作后的回调函数。<br>ret 为 callback 函数的参数，有两个属性:<br>status:结果2种 true, false 都为布尔类型 <br>msg:结果string类型 |
 
+5.setUserId(userIdObject, callback)
+
+| 参数名 | 类型 | 是否必填 | 参数描述 |
+|-----|-----|-----|----|
+| userIdObject | object | 是 | key:userId(string类型,必要key) value:(string或者number类型) |
+| callback | 函数 | 否 | callback {function (ret)}：执行完读取操作后的回调函数。<br>ret 为 callback 函数的参数，有两个属性:<br>status:结果2种 true, false 都为布尔类型 <br>msg:结果string类型 |
+
 6.clearUserId(callback)
 
 | 参数名 | 类型 | 是否必填 | 参数描述 |
