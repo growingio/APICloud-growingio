@@ -8,7 +8,8 @@
 ```
 <feature name="GrowingIO">
 <param name="accountId" value="xxxxx"/>
-<param name="urlScheme" value="xxxxx"/>
+<param name="android_urlScheme" value="xx android项目的urlScheme  xx"/>
+<param name="ios_urlScheme" value="xx ios项目的urlScheme  xx"/>
 <param name="trackerHost" value="xxxxx"/>
 <param name="reportHost" value="xxxxx"/>
 <param name="dataHost" value="xxxxx"/>
@@ -18,9 +19,11 @@
 <param name="channel" value="xxxx"/>
 <param name="debug" value="true or false"/>
 </feature>
-<preference name="urlScheme" value="xxx" />
+<preference name="urlScheme" value=" xx android项目的urlScheme  x " />
+<preference name="urlScheme" value=" xx ios项目的urlScheme  x " />
 ```
 
+**注意preference的urlScheme需要配置两个， 一个为Android项目的， 另一个为IOS项目的， 如果只有一个平台填写自己相应平台的即可, 同理feature中的android_urlScheme与ios_urlScheme**
 
 ### 2.下载模块zip包
 iOS: [link](http://note.youdao.com/)

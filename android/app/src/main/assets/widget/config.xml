@@ -11,7 +11,7 @@
     <preference name="customRefreshHeader" value="cusHeader" />
     <feature name="GrowingIO">
         <param name="accountId" value="xxxxx"/>
-        <param name="urlScheme" value="xxxxx"/>
+        <param name="android_urlScheme" value="xxxxx"/>
         <param name="debug" value="true"/>
     </feature>
 </widget>
