@@ -28,12 +28,34 @@
 ### 2.下载模块zip包
 iOS: [link](http://note.youdao.com/)
 
-### 3.添加模块
-iOS: 开发控制台 -> 选择应用 -> 模块 -> 自定义模块 -> 点击上传 -> 编写自定义模块信息(注意:模块名称要和zip包名称一致)-> 点击添加模块 "+" -> 在已添加模块中确认是否成功添加
+Android: [link](https://www.baidu.com)
 
-### 4.方法
+### 3.添加模块
+开发控制台 -> 选择应用 -> 模块 -> 自定义模块 -> 点击上传 -> 编写自定义模块信息(注意:模块名称要和zip包名称一致)-> 点击添加模块 "+" -> 在已添加模块中确认是否成功添加
+
+### 4.Android的额外操作
+Android 云编译Loader为AppLoader， 使用自定义模块式需要编译Android自定义loader, 否则会出现模块未绑定错误, 另外需要注意的是在使用自定义loader时 请勾选 **使用升级环境编译** 选项
+
+具体步骤如下: 
+1. 模块-自定义loader: 请勾选 **使用升级环境编译**
+   ![](img/custom_loader.png)
+   
+2. 云编译时， 请勾选 **使用升级环境编译**
+   ![](img/cloud_compile.png)
+   
+
+### 5.方法
 1.init(callback)  
 **此接口为Android初始化， 在require后调用， iOS不需要， iOS已自动初始化**
+建议在require GrowingIO时调用此接口
+
+```js
+    var gio = null;
+	apiready = function(){
+	    gio = api.require('GrowingIO');
+	    gio.init();
+	}
+```
 
 | 参数名 | 类型 | 是否必填 | 参数描述 |
 |-----|-----|-----|----|
@@ -73,7 +95,7 @@ iOS: 开发控制台 -> 选择应用 -> 模块 -> 自定义模块 -> 点击上�
 |-----|-----|-----|----|
 | callback | 函数 | 否 | callback {function (ret)}：执行完读取操作后的回调函数。<br>ret 为 callback 函数的参数，有两个属性:<br>status:结果2种 true, false 都为布尔类型 <br>msg:结果string类型 |
 
-### 5.Tips
+### 6.Tips
 **iOS**  
 1. 提示无法检测到urlScheme?  
 anser: (1)查看config.xml是否配置正确 (2)需要同步代码到云端,云编译生效

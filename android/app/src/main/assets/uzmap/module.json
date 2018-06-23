@@ -1,7 +1,7 @@
 {
 	"modules":[
 		{
-			"name":"growingio",
+			"name":"GrowingIO",
 			"class":"com.growingio.android.apicloud.GrowingIOModule"
 		},
 		{

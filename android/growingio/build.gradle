@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 25
+        targetSdkVersion 20
         versionCode 1
         versionName "1.0"
     }
@@ -38,8 +38,9 @@ afterEvaluate {
         task copyArchiveForAPI(type: Copy){
             from "${project.ext.growingio}",
                     "$buildDir/outputs/aar/growingio-release.aar",
-                    "${rootProject.rootDir}/app/src/main/assets/uzmap/module.json"
+                    "src/module.json"
             into "$buildDir/tmp/growingioArchive"
+            rename("growingio-release.aar", "GrowingIO.aar")
         }
 
         task zipApiCloud(dependsOn: copyArchiveForAPI, type: Zip){
