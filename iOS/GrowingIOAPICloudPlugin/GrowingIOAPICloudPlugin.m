@@ -84,6 +84,7 @@
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument event can not be empty"] errDict:nil doDelete:YES];
         }
+        NSLog(@"Argument error, The Argument event can not be empty");
         return;
     }
     
@@ -91,6 +92,7 @@
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument event must be object type"] errDict:nil doDelete:YES];
         }
+        NSLog(@"Argument error, The Argument event must be object type");
         return;
     }
     
@@ -100,6 +102,7 @@
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The eventId value must be string type"] errDict:nil doDelete:YES];
         }
+        NSLog(@"Argument error, The eventId value must be string type");
         return;
     }
     
@@ -107,6 +110,7 @@
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The eventId value can not be empty"] errDict:nil doDelete:YES];
         }
+        NSLog(@"Argument error, The eventId value can not be empty");
         return;
     }
     
@@ -123,12 +127,15 @@
             if (cbid > 0) {
                 [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The eventLevelVariable value must be object type"] errDict:nil doDelete:YES];
             }
+            NSLog(@"Argument error, The eventLevelVariable value must be object type");
             return;
         }
         if (![number isKindOfClass:[NSNumber class]]) {
             if (cbid > 0) {
                 [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The number value must be number type"] errDict:nil doDelete:YES];
             }
+            NSLog(@"Argument error, The number value must be number type");
+
             return;
         }
         [self dispatchInMainThread:^{
@@ -140,6 +147,7 @@
             if (cbid > 0) {
                 [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The eventLevelVariable value must be object type"] errDict:nil doDelete:YES];
             }
+            NSLog(@"Argument error, The eventLevelVariable value must be object type");
             return;
         }
         [self dispatchInMainThread:^{
@@ -150,6 +158,7 @@
             if (cbid > 0) {
                 [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The number value must be number type"] errDict:nil doDelete:YES];
             }
+            NSLog(@"Argument error, The number value must be number type");
             return;
         }
         [self dispatchInMainThread:^{
@@ -171,6 +180,7 @@
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument conversionVariables can not be empty"] errDict:nil doDelete:YES];
         }
+        NSLog(@"Argument error, The Argument conversionVariables can not be empty");
         return;
     }
 
@@ -178,6 +188,7 @@
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument conversionVariables must be object type"] errDict:nil doDelete:YES];
         }
+        NSLog(@"Argument error, The Argument conversionVariables must be object type");
         return;
     }
     
@@ -199,6 +210,7 @@
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument peopleVariables can not be empty"] errDict:nil doDelete:YES];
         }
+        NSLog(@"Argument error, The Argument peopleVariables can not be empty");
         return;
     }
 
@@ -206,6 +218,7 @@
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument peopleVariables must be object type"] errDict:nil doDelete:YES];
         }
+        NSLog(@"Argument error, The Argument peopleVariables must be object type");
         return;
     }
     
@@ -227,6 +240,7 @@
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument userIdObject can not be empty"] errDict:nil doDelete:YES];
         }
+        NSLog(@"Argument error, The Argument userIdObject can not be empty");
         return;
     }
 
@@ -236,6 +250,7 @@
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, userId value must be string or number type"] errDict:nil doDelete:YES];
         }
+        NSLog(@"Argument error, userId value must be string or number type");
         return;
     }
     
@@ -247,6 +262,7 @@
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, userId length can not > 1000 or = 0"] errDict:nil doDelete:YES];
         }
+        NSLog(@"Argument error, userId length can not > 1000 or = 0");
         return;
     }
     
