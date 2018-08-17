@@ -4,10 +4,10 @@ import org.json.JSONObject;
 import android.app.Application;
 import android.text.TextUtils;
 
-
-import com.growingio.android.sdk.collection.AppState;
 import com.growingio.android.sdk.collection.Configuration;
+import com.growingio.android.sdk.collection.CoreInitialize;
 import com.growingio.android.sdk.collection.GrowingIO;
+import com.growingio.android.sdk.collection.SessionManager;
 import com.growingio.android.sdk.utils.LogUtil;
 import com.uzmap.pkg.uzcore.UZWebView;
 import com.uzmap.pkg.uzcore.uzmodule.UZModule;
@@ -90,7 +90,8 @@ public class GrowingIOModule extends UZModule {
 		}
 		configuration.setRnMode(true);
 		GrowingIO.startWithConfiguration(application, configuration);
-		AppState.getInstance().setForegroundActivity(GrowingIOAppState.currentActivity());
+		CoreInitialize.coreAppState().setForegroundActivity(GrowingIOAppState.currentActivity());
+		SessionManager.onActivityResume();
 		LogUtil.d(GROWINGIO, "初始化结束");
 	}
 
