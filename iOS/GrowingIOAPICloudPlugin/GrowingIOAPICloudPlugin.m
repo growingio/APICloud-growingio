@@ -47,7 +47,7 @@
     NSString *wsHost = [feature stringValueForKey:@"wsHost" defaultValue:@""];
     NSString *zone = [feature stringValueForKey:@"zone" defaultValue:@""];
     NSString *debug = [feature stringValueForKey:@"debug" defaultValue:@""];
-    NSString *accountId = [feature stringValueForKey:@"accountId" defaultValue:@""];
+    NSString *accountId = [feature stringValueForKey:@"ios_accountId" defaultValue:@""];
 
     if (trackerHost.length != 0) {
         [Growing setTrackerHost:trackerHost];
