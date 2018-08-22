@@ -33,7 +33,7 @@ public class GrowingIOModule extends UZModule {
 	/**
 	 * 暴露的Feature
 	 * {
-	 *     "accountId": "",
+	 *     "android_accountId": "",
 	 *     "android_urlScheme": "",
 	 *     "debug": "",
 	 *     "channel": "",
@@ -46,7 +46,7 @@ public class GrowingIOModule extends UZModule {
 	 * }
 	 */
 	private void init(Application application) {
-		String accountId = getValue("accountId");
+		String accountId = getValue("android_accountId");
 		String urlScheme = getValue("android_urlScheme");
 		if (TextUtils.isEmpty(accountId) || TextUtils.isEmpty(urlScheme)){
 			throw new IllegalArgumentException("accountId and urlScheme must not be null");

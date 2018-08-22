@@ -7,7 +7,8 @@
 
 ```
 <feature name="GrowingIO">
-<param name="accountId" value="xxxxx"/>
+<param name="android_accountId" value="xxxxx"/>
+<param name="ios_accountId" value="xxxx"/>
 <param name="android_urlScheme" value="xx android项目的urlScheme  xx"/>
 <param name="ios_urlScheme" value="xx ios项目的urlScheme  xx"/>
 <param name="trackerHost" value="xxxxx"/>
