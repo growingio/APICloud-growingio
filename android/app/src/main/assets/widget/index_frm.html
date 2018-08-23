@@ -23,14 +23,14 @@
 	    }
 
 		function track(eventId){
-			var param = {eventId: eventId};
+			var param = {eventId: eventId, number: 7896};
 	        gio.track(param, function(ret, err){
 	        	alert(JSON.stringify(ret));
 	        });
 		}
 
 		function setEvar(){
-		     var param = { "TEST": "TESTVALUE"};
+		     var param = { "中文": "中文Value"};
 		     gio.setEvar(param);
 		}
 

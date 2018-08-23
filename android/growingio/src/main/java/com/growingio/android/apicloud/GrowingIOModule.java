@@ -96,7 +96,7 @@ public class GrowingIOModule extends UZModule {
 	}
 
 	private void success(UZModuleContext context){
-		context.success("{\"status\":true}", true, true);
+		context.success("{\"status\":true, \"msg\": \"success\"}", true, true);
 	}
 
 	public void jsmethod_init(UZModuleContext context){
@@ -109,11 +109,15 @@ public class GrowingIOModule extends UZModule {
 
 
 	public void jsmethod_track(UZModuleContext moduleContext){
-		String eventId = moduleContext.optString("eventId");
+		String eventId = optString(moduleContext, "eventId");
 		JSONObject eventLevelVariable = moduleContext.optJSONObject("eventLevelVariable");
 		Double number = moduleContext.optDouble("number", 0);
 		if (Math.abs(number - 0) > 0.0000001){
-			GrowingIO.getInstance().track(eventId, number, eventLevelVariable);
+			if (eventLevelVariable != null){
+				GrowingIO.getInstance().track(eventId, number, eventLevelVariable);
+			}else{
+				GrowingIO.getInstance().track(eventId, number);
+			}
 		}else{
 			if (eventLevelVariable == null){
 				GrowingIO.getInstance().track(eventId);
@@ -125,7 +129,7 @@ public class GrowingIOModule extends UZModule {
 	}
 
 	public void jsmethod_setUserId(UZModuleContext moduleContext){
-		String userId = moduleContext.optString("userId");
+		String userId = optString(moduleContext, "userId");
 		GrowingIO.getInstance().setUserId(userId);
 		success(moduleContext);
 	}
@@ -145,5 +149,15 @@ public class GrowingIOModule extends UZModule {
 		JSONObject peopleVariable = moduleContext.get();
 		GrowingIO.getInstance().setPeopleVariable(peopleVariable);
 		success(moduleContext);
+	}
+
+	private String optString(UZModuleContext context, String key){
+		String result = context.optString(key);
+		if ("null".equals(result)){
+			JSONObject object = context.optJSONObject(key);
+			if (object == null || object.length() == 0)
+				result = null;
+		}
+		return result;
 	}
 }
