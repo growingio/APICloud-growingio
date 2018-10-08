@@ -21,13 +21,13 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.growingio.android:vds-android-agent:2.3.3@aar'
+    compile 'com.growingio.android:vds-android-agent:track-2.5.0-beta8@aar'
     provided files('../app/libs/apiEngine v1.1.0.jar')
 }
 
 afterEvaluate {
     configurations.compile.each {
-        if (it.name.startsWith("vds-android-agent")){
+        if (it.name.startsWith("t-vds-android-agent") || it.name.startsWith("vds-android-agent")){
             project.ext.growingio = it.absolutePath
             logger.info("found growingio aar path %s", ext.growingio)
         }
@@ -35,12 +35,15 @@ afterEvaluate {
 
     if (project.ext.growingio != null && project.ext.growingio.length() != 0){
         logger.info("create task zip apicloud")
+        def vdsAndroidAgentName = project.ext.growingio.substring(project.ext.growingio.lastIndexOf('/') + 1)
+        logger.info("vdsAndroidAgentName: ${vdsAndroidAgentName}")
         task copyArchiveForAPI(type: Copy){
             from "${project.ext.growingio}",
                     "$buildDir/outputs/aar/growingio-release.aar",
                     "src/module.json"
             into "$buildDir/tmp/growingioArchive"
             rename("growingio-release.aar", "GrowingIO.aar")
+            rename(vdsAndroidAgentName, "vds-android-agent.aar")
         }
 
         task zipApiCloud(dependsOn: copyArchiveForAPI, type: Zip){

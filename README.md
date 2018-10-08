@@ -29,7 +29,7 @@
 ### 2.下载模块zip包
 iOS: [link](http://note.youdao.com/)
 
-Android: [link](https://www.baidu.com)
+Android: [link](android/GrowingIO.zip)
 
 ### 3.添加模块
 开发控制台 -> 选择应用 -> 模块 -> 自定义模块 -> 点击上传 -> 编写自定义模块信息(注意:模块名称要和zip包名称一致)-> 点击添加模块 "+" -> 在已添加模块中确认是否成功添加
