@@ -27,7 +27,7 @@
 **注意preference的urlScheme需要配置两个， 一个为Android项目的， 另一个为IOS项目的， 如果只有一个平台填写自己相应平台的即可, 同理feature中的android_urlScheme与ios_urlScheme**
 
 ### 2.下载模块zip包
-iOS: [link](http://note.youdao.com/)
+iOS: [link](https://github.com/growingio/APICloud-growingio/blob/develop/iOS/iOS/GrowingIOAPICloudPlugin.zip)
 
 Android: [link](android/GrowingIO.zip)
 
