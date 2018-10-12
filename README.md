@@ -9,8 +9,8 @@
 <feature name="GrowingIO">
 <param name="android_accountId" value="xxxxx"/>
 <param name="ios_accountId" value="xxxx"/>
-<param name="android_urlScheme" value="xx android项目的urlScheme  xx"/>
 <param name="ios_urlScheme" value="xx ios项目的urlScheme  xx"/>
+<param name="android_urlScheme" value="xx android项目的urlScheme  xx"/>
 <param name="trackerHost" value="xxxxx"/>
 <param name="reportHost" value="xxxxx"/>
 <param name="dataHost" value="xxxxx"/>
@@ -20,11 +20,13 @@
 <param name="channel" value="xxxx"/>
 <param name="debug" value="true or false"/>
 </feature>
-<preference name="urlScheme" value=" xx android项目的urlScheme  x " />
 <preference name="urlScheme" value=" xx ios项目的urlScheme  x " />
+<preference name="urlScheme" value=" xx android项目的urlScheme  x " />
 ```
 
 **注意preference的urlScheme需要配置两个， 一个为Android项目的， 另一个为IOS项目的， 如果只有一个平台填写自己相应平台的即可, 同理feature中的android_urlScheme与ios_urlScheme**
+
+**注意preference中 ios项目的urlScheme在前,android项目的urlScheme在后,需要保证顺序**
 
 ### 2.下载模块zip包
 iOS: [link](https://github.com/growingio/APICloud-growingio/blob/develop/iOS/iOS/GrowingIOAPICloudPlugin.zip)
@@ -108,7 +110,10 @@ anser: 只能真机测试
 anser: 您可以使用GrowingIO官网提供的mobileDebugger工具来查看
 
 4. 此模块是否包含IDFA?  
-anser: 包含IDFA, GrowingIO 使用 IDFA 来做来源管理激活设备的精确匹配，让你更好的衡量广告效果。  
+anser: 包含IDFA, GrowingIO 使用 IDFA 来做来源管理激活设备的精确匹配，让你更好的衡量广告效果。 
+
+5. 官网web提示未检测到sdk?    
+anser: 请使用正式版包来操作几次
 
 App Store 提交应用注意事项  
 GrowingIO会启用 IDFA，所以在向 App Store 提交应用时，需要：
