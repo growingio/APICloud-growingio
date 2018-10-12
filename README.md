@@ -29,7 +29,7 @@
 **注意preference中 ios项目的urlScheme在前,android项目的urlScheme在后,需要保证顺序**
 
 ### 2.下载模块zip包
-iOS: [link](https://github.com/growingio/APICloud-growingio/blob/develop/iOS/iOS/GrowingIOAPICloudPlugin.zip)
+iOS: [link](https://github.com/growingio/APICloud-growingio/blob/develop/iOS/iOS/GrowingIO.zip)
 
 Android: [link](android/GrowingIO.zip)
 
