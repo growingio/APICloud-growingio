@@ -21,7 +21,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.growingio.android:vds-android-agent:track-2.5.0-beta8@aar'
+    compile 'com.growingio.android:vds-android-agent:track-2.6.0'
     provided files('../app/libs/apiEngine v1.1.0.jar')
 }
 
@@ -43,7 +43,7 @@ afterEvaluate {
                     "src/module.json"
             into "$buildDir/tmp/growingioArchive"
             rename("growingio-release.aar", "GrowingIO.aar")
-            rename(vdsAndroidAgentName, "vds-android-agent.aar")
+            rename(vdsAndroidAgentName, "gioagent.aar")
         }
 
         task zipApiCloud(dependsOn: copyArchiveForAPI, type: Zip){

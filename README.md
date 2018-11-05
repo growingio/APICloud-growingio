@@ -46,7 +46,7 @@ Android 云编译Loader为AppLoader， 使用自定义模块式需要编译Andro
    
 
 ### 5.方法
-1.init(callback)  
+1.init()  
 **此接口为Android初始化， 在require后调用， iOS不需要， iOS已自动初始化**
 建议在require GrowingIO时调用此接口
 
@@ -57,10 +57,6 @@ Android 云编译Loader为AppLoader， 使用自定义模块式需要编译Andro
 	    gio.init();
 	}
 ```
-
-| 参数名 | 类型 | 是否必填 | 参数描述 |
-|-----|-----|-----|----|
-| callback | 函数 | 否 | callback {function (ret)}：执行完读取操作后的回调函数。<br>ret 为 callback 函数的参数，有两个属性:<br>status:结果2种 true, false 都为布尔类型 <br>msg:结果string类型 |
 
 2.track(event, callback)
 
