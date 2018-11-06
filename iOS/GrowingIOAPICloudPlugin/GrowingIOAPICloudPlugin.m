@@ -39,7 +39,7 @@
 
 + (void)launch {
     NSDictionary *feature = [[UZAppDelegate appDelegate] getFeatureByName:@"GrowingIO"];
-
+    
     NSString *trackerHost = [feature stringValueForKey:@"trackerHost" defaultValue:@""];
     NSString *reportHost = [feature stringValueForKey:@"reportHost" defaultValue:@""];
     NSString *dataHost = [feature stringValueForKey:@"dataHost" defaultValue:@""];
@@ -48,7 +48,7 @@
     NSString *zone = [feature stringValueForKey:@"zone" defaultValue:@""];
     NSString *debug = [feature stringValueForKey:@"debug" defaultValue:@""];
     NSString *accountId = [feature stringValueForKey:@"ios_accountId" defaultValue:@""];
-
+    
     if (trackerHost.length != 0) {
         [Growing setTrackerHost:trackerHost];
     }
@@ -135,7 +135,7 @@
                 [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The number value must be number type"] errDict:nil doDelete:YES];
             }
             NSLog(@"Argument error, The number value must be number type");
-
+            
             return;
         }
         [self dispatchInMainThread:^{
@@ -183,7 +183,7 @@
         NSLog(@"Argument error, The Argument conversionVariables can not be empty");
         return;
     }
-
+    
     if (![conversionVariables isKindOfClass:[NSDictionary class]]) {
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument conversionVariables must be object type"] errDict:nil doDelete:YES];
@@ -213,7 +213,7 @@
         NSLog(@"Argument error, The Argument peopleVariables can not be empty");
         return;
     }
-
+    
     if (![peopleVariables isKindOfClass:[NSDictionary class]]) {
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument peopleVariables must be object type"] errDict:nil doDelete:YES];
@@ -231,11 +231,43 @@
     }
 }
 
+- (void)setVistor:(NSDictionary *)variable
+{
+    NSInteger cbid = [variable integerValueForKey:@"cbId" defaultValue:0];
+    [((NSMutableDictionary *)variable) removeObjectForKey:@"cbId"];
+    
+    if (variable.count == 0) {
+        if (cbid > 0) {
+            [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument peopleVariables can not be empty"] errDict:nil doDelete:YES];
+        }
+        NSLog(@"Argument error, The Argument peopleVariables can not be empty");
+        return;
+    }
+    
+    if (![variable isKindOfClass:[NSDictionary class]]) {
+        if (cbid > 0) {
+            [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument peopleVariables must be object type"] errDict:nil doDelete:YES];
+        }
+        NSLog(@"Argument error, The Argument peopleVariables must be object type");
+        return;
+    }
+    
+    [self dispatchInMainThread:^{
+        [Growing setVisitor:variable];
+    }];
+    
+    if (cbid > 0) {
+        [self sendResultEventWithCallbackId:cbid dataDict:[self successCallbackDictWithMsg:@"setPeopleVariable"] errDict:nil doDelete:YES];
+    }
+}
+
+
+
 - (void)setUserId:(NSDictionary *)userIdDict
 {
     NSInteger cbid = [userIdDict integerValueForKey:@"cbId" defaultValue:0];
     [((NSMutableDictionary *)userIdDict) removeObjectForKey:@"cbId"];
-
+    
     if (userIdDict.count == 0) {
         if (cbid > 0) {
             [self sendResultEventWithCallbackId:cbid dataDict:[self errorCallbackDictWithMsg:@"Argument error, The Argument userIdObject can not be empty"] errDict:nil doDelete:YES];
@@ -243,7 +275,7 @@
         NSLog(@"Argument error, The Argument userIdObject can not be empty");
         return;
     }
-
+    
     NSString *userId = userIdDict[@"userId"];
     
     if (![userId isKindOfClass:[NSString class]] && ![userId isKindOfClass:[NSNumber class]]) {
@@ -278,7 +310,7 @@
 - (void)clearUserId:(NSDictionary *)callbackDict
 {
     NSInteger cbid = [callbackDict integerValueForKey:@"cbId" defaultValue:0];
-
+    
     [self dispatchInMainThread:^{
         [Growing clearUserId];
     }];
