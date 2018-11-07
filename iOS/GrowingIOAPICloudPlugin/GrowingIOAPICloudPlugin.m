@@ -231,7 +231,7 @@
     }
 }
 
-- (void)setVistor:(NSDictionary *)variable
+- (void)setVisitor:(NSDictionary *)variable
 {
     NSInteger cbid = [variable integerValueForKey:@"cbId" defaultValue:0];
     [((NSMutableDictionary *)variable) removeObjectForKey:@"cbId"];
@@ -257,7 +257,7 @@
     }];
     
     if (cbid > 0) {
-        [self sendResultEventWithCallbackId:cbid dataDict:[self successCallbackDictWithMsg:@"setPeopleVariable"] errDict:nil doDelete:YES];
+        [self sendResultEventWithCallbackId:cbid dataDict:[self successCallbackDictWithMsg:@"setVisitor"] errDict:nil doDelete:YES];
     }
 }
 
