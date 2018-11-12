@@ -21,7 +21,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.growingio.android:vds-android-agent:track-2.6.0'
+    compile 'com.growingio.android:vds-android-agent:track-2.6.0@aar'
     provided files('../app/libs/apiEngine v1.1.0.jar')
 }
 
