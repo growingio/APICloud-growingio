@@ -22,7 +22,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     //compile 'com.growingio.android.test:t-vds-android-agent:track-2.7.1-beta@aar'
-    compile 'com.growingio.android:vds-android-agent:track-2.6.8@aar'
+    compile 'com.growingio.android:vds-android-agent:track-2.7.5@aar'
     provided files('../app/libs/apiEngine v1.1.0.jar')
 }
 
@@ -42,7 +42,7 @@ afterEvaluate {
             from "${project.ext.growingio}",
                     "$buildDir/outputs/aar/growingio-release.aar",
                     "src/module.json"
-            into "$buildDir/tmp/growingioArchive"
+            into "$buildDir/tmp/growingioArchive/GrowingIO"
             rename("growingio-release.aar", "GrowingIO.aar")
             rename(vdsAndroidAgentName, "gioagent.aar")
         }
