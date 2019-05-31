@@ -261,7 +261,13 @@
     }
 }
 
-
+- (void)setGeoLocation:(NSDictionary *)location
+{
+    NSInteger cbid = [location integerValueForKey:@"cbId" defaultValue:0];
+    if (cbid > 0) {
+        [self sendResultEventWithCallbackId:cbid dataDict:[self successCallbackDictWithMsg:@"setGeoLocation"] errDict:nil doDelete:YES];
+    }
+}
 
 - (void)setUserId:(NSDictionary *)userIdDict
 {

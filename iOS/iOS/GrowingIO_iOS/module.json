@@ -2,7 +2,7 @@
  {
     "name":"GrowingIO",
     "class":"GrowingIOAPICloudPlugin",
-    "methods":["track", "setEvar", "setPeopleVariable", "setUserId", "clearUserId"],
+    "methods":["track", "setEvar", "setPeopleVariable", "setUserId", "clearUserId", "setVisitor", "setGeoLocation"],
     "launchClassMethod":"launch"
  }
 ]
