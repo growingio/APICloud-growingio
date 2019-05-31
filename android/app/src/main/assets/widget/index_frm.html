@@ -47,6 +47,11 @@
 		function clearUserId(){
 		     gio.clearUserId();
 		}
+
+		function setGeoLocation(latitude, longitude){
+		     var param = {"longitude": longitude, "latitude": latitude}
+		     gio.setGeoLocation(param);
+		}
 	    
 	</script>
 </head>
@@ -64,6 +69,11 @@
 			    <div class="clickbtn" tapmode="active" onclick="setUserId()">setUserId</div>
 			<div class="itemtitle">5、 clearUserId</div>
 			    <div class="clickbtn" tapmode="active" onclick="clearUserId()">clearUserId</div>
+
+			<div class='itemtitle'>6. setGeoLocation(0, 0)</div>
+			    <div class="clickbtn" tapmode="active" onclick="setGeoLocation(0, 0)">setGeoLocation(0, 0)</div>
+			<div class='itemtitle'>7. setGeoLocation(100, 200</div>
+			    <div class="clickbtn" tapmode="active" onclick="setGeoLocation(100, 200)">setGeoLocation(100, 200)</div>
 			<br>
 		</div>
 	</div>

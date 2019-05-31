@@ -1,5 +1,6 @@
 package com.growingio.android.apicloud;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.Application;
 import android.text.TextUtils;
@@ -151,6 +152,19 @@ public class GrowingIOModule extends UZModule {
 		JSONObject peopleVariable = moduleContext.get();
 		GrowingIO.getInstance().setPeopleVariable(peopleVariable);
 		success(moduleContext);
+	}
+
+	public void jsmethod_setGeoLocation(UZModuleContext moduleContext){
+		JSONObject location = moduleContext.get();
+		try {
+			double latitude = location.getDouble("latitude");
+			double longitude = location.getDouble("longitude");
+			GrowingIO.getInstance().setGeoLocation(latitude, longitude);
+			success(moduleContext);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			moduleContext.error(null, null, true);
+		}
 	}
 
 	private String optString(UZModuleContext context, String key){
