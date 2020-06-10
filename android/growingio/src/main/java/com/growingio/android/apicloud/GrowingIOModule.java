@@ -148,6 +148,12 @@ public class GrowingIOModule extends UZModule {
 		success(moduleContext);
 	}
 
+	public void jsmethod_setVisitor(UZModuleContext moduleContext){
+		JSONObject visitorVariables = moduleContext.get();
+		GrowingIO.getInstance().setVisitor(visitorVariables);
+		success(moduleContext);
+	}
+
 	public void jsmethod_setPeopleVariable(UZModuleContext moduleContext){
 		JSONObject peopleVariable = moduleContext.get();
 		GrowingIO.getInstance().setPeopleVariable(peopleVariable);
