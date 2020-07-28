@@ -15,6 +15,7 @@
 @import Security;
 @import CFNetwork;
 @import CoreLocation;
+@import WebKit;
 #endif
 
 typedef NS_ENUM(NSInteger, GrowingAspectMode)
@@ -42,7 +43,7 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
 // 如果以上所有函数都未实现 则请实现 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation 方法并调用handleUrl
 + (BOOL)handleUrl:(NSURL*)url;
 
-// 请在applicationDidFinishLaunching中调用此函数初始化
+// 请在applicationDidFinishLaunching中调用此函数初始化,并且在主线程中
 
 // TODO: 要不要把 accountId 改成 projectId？
 // TODO: 这里的任何改动，都需要改 help 文档和集成文档
@@ -64,6 +65,10 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
 + (void)disablePushTrack:(BOOL)disable;
 + (BOOL)getDisablePushTrack;
 
+// 默认为YES
+// 设置为NO可以不采集地理位置的统计信息
++ (void)setEnableLocationTrack:(BOOL)enable;
++ (BOOL)getEnableLocationTrack;
 
 // 以下函数设置后会覆盖原有设置
 // 此函数如果被定义,则为获取deviceID的第一优先级
@@ -75,11 +80,32 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
 
 /**
  deeplink广告落地页参数回调设置
+ 调用时机在startWithAccountId函数之前
 
- @param handler deeplink广告落地页参数回调, params 为解析正确时反回调的参数, error 为解析错误时返回的参数.
+ @param handler deeplink广告落地页参数回调, params 为解析正确时回调的参数, processTime为从app被deeplink唤起到handler回调的时间(单位秒), error 为解析错误时返回的参数.
                  handler 默认为空, 客户需要手动设置.
  */
-+ (void)registerDeeplinkHandler:(void(^)(NSDictionary *params, NSError *error))handler;
++ (void)registerDeeplinkHandler:(void(^)(NSDictionary *params, NSTimeInterval processTime, NSError *error))handler;
+
+
+/**
+ 判断链接是否为deeplink链接
+
+ @param url 传入的网址
+ @return YES:是deeplink链接 NO:不是deeplink链接
+*/
++ (BOOL)isDeeplinkUrl:(NSURL *)url;
+
+/**
+ 手动处理deeplink链接
+
+ @param url 传入的网址
+ @param callback deeplink广告落地页参数回调, params 为解析正确时回调的参数, processTime为从app被deeplink唤起到handler回调的时间(单位秒), error 为解析错误时返回的参数.
+ callback若传nil:回调结果将从method <registerDeeplinkHandler:>中设置的handler返回
+ callback若不为nil:回调结果只从当前的callback中返回
+ @return YES:是deeplink链接 NO:不是deeplink链接
+*/
++ (BOOL)doDeeplinkByUrl:(NSURL *)url callback:(void(^)(NSDictionary *params, NSTimeInterval processTime, NSError *error))callback;
 
 /**
   + 注册实时发送数据的回调
@@ -92,6 +118,14 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
 + (void)setAspectMode:(GrowingAspectMode)aspectMode;
 + (GrowingAspectMode)getAspectMode;
 
+// 该函数请在main函数第一行调用
++ (void)setBundleId:(NSString *)bundleId;
++ (NSString *)getBundleId; // 此方法只返回您的赋值
+
+// 该函数请在main函数第一行调用
++ (void)setUrlScheme:(NSString *)urlScheme;
++ (NSString *)getUrlScheme; // 此方法只返回您的赋值
+
 // 是否允许发送基本性能诊断信息，默认为开
 + (void)setEnableDiagnose:(BOOL)enable;
 
@@ -101,6 +135,10 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
 // 设置发送数据的时间间隔（单位为秒）
 + (void)setFlushInterval:(NSTimeInterval)interval;
 + (NSTimeInterval)getFlushInterval;
+
+// 设置从后台进入前台重置sessionID的时间间隔 (单位为秒)
++ (void)setSessionInterval:(NSTimeInterval)interval;
++ (NSTimeInterval)getSessionInterval;
 
 // 设置每天使用数据网络（2G、3G、4G）上传的数据量的上限（单位是 KB）
 + (void)setDailyDataLimit:(NSUInteger)numberOfKiloByte;
@@ -231,5 +269,12 @@ typedef NS_ENUM(NSInteger, GrowingAspectMode)
  @param variable : 访问用户变量, 不能为nil
  */
 + (void)setVisitor:(NSDictionary<NSString *, NSObject *> *)variable;
+
+/**
+ 是否开启SDK的crash监控，默认是开启的，请在 startWithAccountId: 或 startWithAccountId: withSampling: 接口之前设置。
+ 
+ @param uploadExceptionEnable 是否开启SDK的crash监控上报
+ */
++ (void)setUploadExceptionEnable:(BOOL)uploadExceptionEnable;
 
 @end
