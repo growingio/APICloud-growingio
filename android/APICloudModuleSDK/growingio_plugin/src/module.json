@@ -1,0 +1,8 @@
+{
+  "name":"GrowingIO",
+  "class":"com.growingio.android.apicloud.GrowingIOModule"
+},
+{
+  "name": "gioappstate",
+  "class": "com.growingio.android.apicloud.GrowingIOAppState"
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Module Develop</title>
+<meta charset="utf-8">
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<style type="text/css">
+	html,body{
+		height: 100%
+	}
+	body{
+		background-color: #fff;
+	    margin: 0;
+	}
+	#wrap{
+	    height: 100%;
+	    position: relative;
+	}
+	#header{
+		background-color: #5082c2;
+		height: 44px;
+	    position: relative;
+	}
+	#header h1{
+	    font-size: 20px; 
+	    height: 44px; 
+	    line-height: 44px; 
+	    margin: 0em; 
+	    color: #fff;
+		margin-left: 100px;
+		margin-right: 100px;
+		text-align: center;
+	}
+    #main{
+        display: block;
+    }
+    a.button{
+        display: -webkit-box;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        height: 36px;
+        margin: 8px;
+        background-color: rgba(240,240,240,1.0);
+        border-color: rgba(220,220,220,1.0);
+        border-width: 2px;
+        border-style: solid;
+	}
+    a.active{
+        background-color: rgba(240,240,240,0.6);
+	}
+</style>
+</head>
+<body>
+	<div id="wrap">
+	    <header id="header">
+	    	<h1 id="title">模块开发</h1>
+	    </header>
+	    <div id="main">
+            <a class="button" tapmode="active" onclick="track('FINE')">track接口</a>
+            <a class="button" tapmode="active" onclick="setEvar()">setEvar接口</a>
+            <a class="button" tapmode="active" onclick="setPeopleVariable()">setPeopleVariable接口</a>
+            <a class="button" tapmode="active" onclick="setUserId()">setUserId</a>
+            <a class="button" tapmode="active" onclick="clearUserId()">clearUserId</a>
+            <a class="button" tapmode="active" onclick="setGeoLocation(0, 0)">setGeoLocation(0, 0)</a>
+            <a class="button" tapmode="active" onclick="setGeoLocation(100, 200)">setGeoLocation(100, 200)</a>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+        var gio = null;
+        apiready = function(){
+            gio = api.require('GrowingIO');
+        }
+
+        function track(eventId){
+            var param = {eventId: eventId, number: 7896};
+            gio.track(param, function(ret, err){
+                alert(JSON.stringify(ret));
+            });
+        }
+
+        function setEvar(){
+             var param = { "中文": "中文Value"};
+             gio.setEvar(param);
+        }
+
+        function setPeopleVariable(){
+             var param = { "TESTKEY": "TESTPPV" };
+             gio.setPeopleVariable(param);
+        }
+
+        function setUserId(){
+             var param = { userId: "testuserId" };
+             gio.setUserId(param);
+        }
+
+        function clearUserId(){
+             gio.clearUserId();
+        }
+
+        function setGeoLocation(latitude, longitude){
+             var param = {"longitude": longitude, "latitude": latitude}
+             gio.setGeoLocation(param);
+        }
+
+    </script>
+</html>
