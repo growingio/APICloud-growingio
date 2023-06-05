@@ -1,0 +1,15 @@
+[
+  {
+    "name": "GrowingIO",
+    "class": "GrowingIOAPICloudPlugin",
+    "methods": [
+      "track",
+      "setEvar",
+      "setPeopleVariable",
+      "setUserId",
+      "clearUserId",
+      "setVisitor",
+      "setGeoLocation"
+    ]
+  }
+]

@@ -1,3 +1,0 @@
-#+TITLE: Android 打包说明
-
-自定义了一个zipApiCloud 的Task， 运行zipApiCloud可以在build/output/zip目录得到一个GrowingIO.zip 文件， 即为APICloud的模块包。 
